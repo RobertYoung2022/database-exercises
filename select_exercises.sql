@@ -2,7 +2,7 @@ USE codeup_test_db;
 
 SELECT * FROM albums;
 
-SELECT name FROM albums WHERE artist = 'Pink Floyd';
+SELECT name AS 'All of Pink Floyd''s Albums' FROM albums WHERE artist = 'Pink Floyd';
 SELECT release_date FROM albums WHERE name = 'Sgt. Pepper\'s Lonely Hearts Club Band';
 SELECT genre FROM albums WHERE name = 'Nevermind';
 SELECT name FROM albums WHERE release_date BETWEEN '1990-01-01' AND '1992-01-01';
