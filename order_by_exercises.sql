@@ -1,63 +1,38 @@
 USE employees;
 
--- PART ONE
-
-
-SELECT *
-FROM employees.departments;
-
-SELECT *
-FROM employees
-WHERE hire_date = 1985;
-
-SELECT employees.first_name
+-- 2 . Modify your first query to order by first name. The first result should be Irena Pelz and the last result should be Vidya Awdeh.
+SELECT employees.first_name, employees.last_name
 FROM employees
 WHERE employees.employees.first_name
-          IN ('Irena', 'Vidya', 'Maya');
+          IN ('Irena', 'Vidya', 'Maya')
+ORDER BY employees.employees.first_name ASC;
 
-SELECT employees.last_name
+ -- 3. Update the query to order by first name and then last name. The first result should now be Irena Acton and the last should be Vidya Zweizig.
+SELECT employees.first_name, employees.last_name
 FROM employees
-WHERE employees.employees.last_name
-          LIKE 'E%';
+WHERE employees.employees.first_name
+          IN ('Irena', 'Vidya', 'Maya')
+ORDER BY employees.employees.first_name, employees.employees.last_name;
 
-SELECT employees.last_name
+ -- 4.Change the ORDER BY clause so that you order by last name before first name. Your first result should still be Irena Acton but now the last result should be Maya Zyda.
+
+SELECT employees.first_name , employees.last_name
 FROM employees
-WHERE employees.employees.last_name
-          LIKE '%q%';
+WHERE employees.employees.first_name
+          IN ('Irena', 'Vidya', 'Maya')
+ORDER BY employees.employees.last_name ASC, employees.employees.first_name DESC;
 
--- PART TWO
--- 1.
-SELECT employees.first_name
+
+
+ -- 5. Update your queries for employees with 'e' in their last name to sort the results by their employee number. Make sure the employee numbers are in the correct order
+SELECT emp_no, last_name
 FROM employees
-WHERE employees.employees.first_name = 'Irena'
-   OR employees.employees.first_name = 'Vidya'
-   OR employees.employees.first_name = 'Maya';
+WHERE last_name LIKE '%e%'
+ORDER BY emp_no;
 
-SELECT *
-FROM employees;
-
--- 2.
-SELECT employees.first_name
+ -- 6.
+SELECT employees.first_name , employees.last_name
 FROM employees
-WHERE (employees.employees.first_name = 'Irena'
-    OR employees.employees.first_name = 'Vidya'
-    OR employees.employees.first_name = 'Maya')
-  AND employees.employees.gender = 'M';
-
--- 3.
-SELECT employees.last_name
-FROM employees
-WHERE employees.employees.last_name LIKE 'E%'
-   OR employees.employees.last_name LIKE '%E';
-
--- 4.
-SELECT employees.last_name
-FROM employees
-WHERE employees.employees.last_name LIKE 'E%'
-  AND employees.employees.last_name LIKE '%E';
-
--- 5.
-SELECT employees.last_name
-FROM employees
-WHERE employees.employees.last_name LIKE '%q%'
-  AND employees.employees.last_name NOT LIKE '%qu%';
+WHERE employees.employees.first_name
+          IN ('Irena', 'Vidya', 'Maya')
+ORDER BY employees.employees.first_name, employees.employees.last_name DESC;
