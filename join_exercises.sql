@@ -1,12 +1,10 @@
 -- USE employees;
 
 
-
+USE join_test_db;
 
 CREATE DATABASE IF NOT EXISTS join_test_db;
 -- SHOW DATABASES;
-
-USE join_test_db;
 
 DROP TABLE IF EXISTS roles;
 CREATE TABLE IF NOT EXISTS roles
@@ -23,8 +21,8 @@ CREATE TABLE IF NOT EXISTS users
     name    VARCHAR(100) NOT NULL,
     email   VARCHAR(100) NOT NULL,
     role_id INT UNSIGNED DEFAULT NULL,
-    PRIMARY KEY (id)
-    -- FOREIGN KEY (role_id) REFERENCES roles (id)
+    PRIMARY KEY (id),
+    FOREIGN KEY (role_id) REFERENCES roles (id)
 );
 
 INSERT INTO roles (name)
@@ -56,6 +54,19 @@ DESCRIBE users;
 
 
 SELECT * FROM users;
+
+SELECT * FROM roles;
+
+
+SELECT users.name AS user_name, roles.name AS role_name
+FROM users
+JOIN roles ON users.role_id = roles.id;
+
+
+
+
+
+
 
 
 
